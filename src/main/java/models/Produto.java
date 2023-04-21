@@ -1,6 +1,11 @@
 package models;
 
-import jakarta.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
+import javax.persistence.Id;
 
 @Entity
 @Table(name="Produto")
@@ -24,7 +29,6 @@ public class Produto {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
     private String nome;
     public Produto(){
 
@@ -33,4 +37,5 @@ public class Produto {
         super();
         this.nome = nome;
     }
+    private double desconto;
 }

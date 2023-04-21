@@ -5,6 +5,8 @@ import models.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/produtos")
 public class ProdutoController {
@@ -17,5 +19,28 @@ public class ProdutoController {
         produtoRepository.save(novoProduto);
         return novoProduto;
     }
+
+    @GetMapping
+    public Iterable<Produto> obterProdutos(){
+        return produtoRepository.findAll();
+    }
+
+    @GetMapping(path = "/{id}")
+    public Optional<Produto> obterPRODUTOPorID(@PathVariable int id){
+        return produtoRepository.findById(id);
+    }
+    @PutMapping //serve para alterar o produto inteiro, o pathmapping serve para alguns parâmetros só
+    public Produto alterarProduto(Produto produto){
+        produtoRepository.save(produto);
+        return produto;
+    }
+    @DeleteMapping(path="/{id}")
+    public void excluirProduto(@PathVariable int id){
+        produtoRepository.deleteById(id);
+    }
+
+
+
+
 
 }
